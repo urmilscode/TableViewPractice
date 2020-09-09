@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ListViewController: UIViewController, UITableViewDataSource,  UITableViewDelegate {
 
     ///MARK - Outlets
 
@@ -19,9 +19,6 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.dataSource = self
-        tableView.delegate = self
         
     }
     
@@ -48,5 +45,15 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell;
     }
     
-
+    ///MARK: - Table View Delegate Methods
+ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    if let cell = tableView.cellForRow(at: indexPath) {
+        if  cell.accessoryType == .none {
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
